@@ -13,7 +13,7 @@ Attention:
 5. Install environments. The main environment file is `environment_full.yml`. If you have trouble installing, try `environment_full_no_builds.yml`. We are aware that there are version conflicts regarding `numpy`, therefore, after installing the environment, you might need to downgrade `numpy` to version 1.23.5.
 
 ### Get our data
-1. Download the data and the results from [here](10.5281/zenodo.15791380) and extract it in the root of this repository. You need at least 30 GB of free disk space.
+1. Download the data and the results from [here](https://zenodo.org/uploads/15791380) and extract it in the root of this repository. You need at least 30 GB of free disk space.
 2. Extract the data. There need be two new folders at the root of the repository:
 ```
 data/...
