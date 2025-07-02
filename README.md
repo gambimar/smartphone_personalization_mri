@@ -7,13 +7,13 @@ Attention:
 ## Getting started
 
 1. Clone this repository
-2. Get our fork of SMPL-Fitting from [here](github), follow the instructions to install it.
-3. Get SKEL from [here](github) and follow the instructions to install it - the dependencies are already included in our environment file.
-4. Get HIT from [here](github) and follow the instructions to install it. You will need to create a new conda environment, because the dependencies are incompatible with the the main environment file, use `environment_hit.yml` to create the environment. 
+2. Get our fork of SMPL-Fitting from [here](https://github.com/gambimar/SMPL-Fitting/), follow the instructions to install it.
+3. Get SKEL from [here](https://github.com/MarilynKeller/SKEL) and follow the instructions to install it - the dependencies are already included in our environment file.
+4. Get HIT from [here](https://github.com/MarilynKeller/HIT) and follow the instructions to install it. You will need to create a new conda environment, because the dependencies are incompatible with the the main environment file, use `environment_hit.yml` to create the environment. 
 5. Install environments. The main environment file is `environment_full.yml`. If you have trouble installing, try `environment_full_no_builds.yml`. We are aware that there are version conflicts regarding `numpy`, therefore, after installing the environment, you might need to downgrade `numpy` to version 1.23.5.
 
 ### Get our data
-1. Download the data and the results from [here](todo) and extract it in the root of this repository. You need at least 40 GB of free disk space.
+1. Download the data and the results from [here](10.5281/zenodo.15791380) and extract it in the root of this repository. You need at least 30 GB of free disk space.
 2. Extract the data. There need be two new folders at the root of the repository:
 ```
 data/...
