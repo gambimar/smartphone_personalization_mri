@@ -1,4 +1,4 @@
-# MRIGait_EmpkinS
+# SIPP
 Official repository for the Plos Computational Biology submission: 
 From Smartphone Images to Musculoskeletal Models: Personalized Inertial Parameter Estimation
 
