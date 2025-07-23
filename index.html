@@ -262,7 +262,7 @@
             </section>
 
             <div class="links">
-                <a href="https://terminplaner.dfn.de/MMFOhOkc6bhXn3Qeqt7HbKs2/" class="link-button mail">Sign up for our web-app here!</a>
+                <a href="https://terminplaner.dfn.de/MMFOhOkc6bhXn3Qe" class="link-button mail">Sign up for our web-app here!</a>
             </div>
         </header>
 
@@ -306,7 +306,7 @@ To allow for the use of our method with existing data, we also introduce two new
             <p>
                 We are developing a web application to allow users to create personalized musculoskeletal models using body hulls - no coding required!
                 <br>
-                <a href="https://terminplaner.dfn.de/MMFOhOkc6bhXn3Qeqt7HbKs2/" class="link-button mail">Sign up for our web-app here!</a>
+                <a href="https://terminplaner.dfn.de/MMFOhOkc6bhXn3Qe" class="link-button mail">Sign up for our web-app here!</a>
             </p>
         </section>
 
@@ -333,9 +333,40 @@ To allow for the use of our method with existing data, we also introduce two new
             <h2>Contact</h2>
             <p>
                 For questions or collaborations, please reach out to: 
-                <a href="mailto:markus.gambietz@fau.de">markus.gambietz@fau.de</a>
+                <button id="show-email" class="link-button " type="button">Show Email</button>
+                <span id="email-address" style="display:none; margin-left:10px;">
+                </span>
             </p>
+<script>
+document.getElementById('show-email').addEventListener('click', function() {
+    // Original email: markus.gambietz@fau.de
+    // Character codes: [109,97,114,107,117,115,46,103,97,109,98,105,101,116,122,64,102,97,117,46,100,101]
+    const shuffled = [
+      101, 115, 114, 64, 109, 101, 102, 46, 46, 
+      116, 117, 122,  98,  97, 105, 117,  97, 103, 
+       97, 109, 107, 100
+    ];
+    // Mapping from shuffled index → decoded position
+    const key = [
+      21,  5,  2, 15,  9, 12, 16, 19,  6, 
+      13, 18, 14, 10,  1, 11,  4, 17,  7, 
+       8,  0,  3, 20
+    ];
+    
+    let decoded = new Array(shuffled.length);
+    for(let i = 0; i < shuffled.length; i++) {
+        decoded[key[i]] = String.fromCharCode(shuffled[i]);
+    }
+    
+    const email = decoded.join('');
+    document.getElementById('email-address').innerHTML = 
+        `<a href="mailto:${email}">${email}</a>`;
+    document.getElementById('email-address').style.display = 'inline';
+    this.style.display = 'none';
+});
+</script>
         </section>
     </div>
 </body>
 </html>
+
