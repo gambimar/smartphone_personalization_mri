@@ -73,23 +73,23 @@
         }
 
         .link-button:hover {
-            background: #2980b9;
+            background: #1d628f;
         }
 
         .link-button.code {
-            background: #27ae60;
+            background: #23a057;
         }
 
         .link-button.code:hover {
-            background: #229954;
+            background: #156034;
         }
 
         .link-button.dataset {
-            background: #e74c3c;
+            background: #d73a29;
         }
 
         .link-button.dataset:hover {
-            background: #c0392b;
+            background: #6f1a10;
         }
         .link-button.mail {
             background: #a19420;
@@ -242,14 +242,21 @@
                 <strong>Katie L. McMahon</strong><sup>5</sup>, 
                 <strong>Anne D. Koelewijn</strong><sup>1</sup>
             </div>
-            
-            <div class="affiliation">
+
+            <span id="show-affiliations" style="cursor:pointer; color:#2b2d4c; font-size:1em;">Show affiliations ▼<br>&nbsp;</span>
+            <div id="affiliations" class="affiliation" style="display:none;">
                 <sup>1</sup>Friedrich-Alexander University Erlangen-Nürnberg, Chair of Autonomous Systems and Mechatronics, Erlangen, Germany<br>
                 <sup>2</sup>Friedrich-Alexander University Erlangen-Nürnberg, Chair of Engineering Design, Erlangen, Germany<br>
                 <sup>3</sup>University of Bonn, Department of Social Ethics and Ethics of Emerging Technologies, Bonn, Germany<br>
                 <sup>4</sup>TU Dortmund, Computer Graphics & Geometry Processing Group, Dortmund, Germany<br>
                 <sup>5</sup>Queensland University of Technology, School of Clinical Sciences, Faculty of Health, Brisbane, Australia<br>
             </div>
+            <script>
+            document.getElementById('show-affiliations').addEventListener('click', function() {
+                document.getElementById('affiliations').style.display = 'block';
+                this.style.display = 'none';
+            });
+            </script>
             
             <div class="links">
                 <a href="https://www.biorxiv.org/content/10.1101/2025.07.08.663673v1" class="link-button">📄 Preprint (PDF)</a>
