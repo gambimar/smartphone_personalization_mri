@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Impressum</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <h1>Impressum</h1>
+
+  <h2>Angaben gemäß § 5 TMG</h2>
+  <p>
+    Markus Gambietz<br>
+    Carl-Thiersch-Straße 2b<br>
+    91052 Erlangen<br>
+    Deutschland
+  </p>
+
+  <h2>Kontakt</h2>
+  <p>
+    E-Mail: <span id="email-address" style="display:none;"></span>
+  </p>
+  <button id="show-email" class="link-button " type="button">Show Email</button>
+<script>
+document.getElementById('show-email').addEventListener('click', function() {
+    // Original email: markus.gambietz@fau.de
+    // Character codes: [109,97,114,107,117,115,46,103,97,109,98,105,101,116,122,64,102,97,117,46,100,101]
+    const shuffled = [
+      101, 115, 114, 64, 109, 101, 102, 46, 46, 
+      116, 117, 122,  98,  97, 105, 117,  97, 103, 
+       97, 109, 107, 100
+    ];
+    // Mapping from shuffled index → decoded position
+    const key = [
+      21,  5,  2, 15,  9, 12, 16, 19,  6, 
+      13, 18, 14, 10,  1, 11,  4, 17,  7, 
+       8,  0,  3, 20
+    ];
+    
+    let decoded = new Array(shuffled.length);
+    for(let i = 0; i < shuffled.length; i++) {
+        decoded[key[i]] = String.fromCharCode(shuffled[i]);
+    }
+    
+    const email = decoded.join('');
+    document.getElementById('email-address').innerHTML = 
+        `<a href="mailto:${email}">${email}</a>`;
+    document.getElementById('email-address').style.display = 'inline';
+    this.style.display = 'none';
+});
+</script>
+
+  <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+  <p>
+    Markus Gambietz<br>
+    Carl-Thiersch-Straße 2b<br>
+    91052 Erlangen
+  </p>
+
+  <h2>Haftungsausschluss</h2>
+  <p>
+    Trotz sorgfältiger inhaltlicher Kontrolle übernehme ich keine Haftung für die Inhalte externer Links. 
+    Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+  </p>
+
+  <h2>Urheberrecht</h2>
+  <p>
+    Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht.
+  </p>
+</body>
+</html>
