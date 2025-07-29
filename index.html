@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPP - Shape-based Inertial Parameter Personalization</title>
+    <meta name="description" content="Project page for 'From Smartphone Images to Musculoskeletal Models: Personalized Inertial Parameter Estimation', including code, dataset, and web app for personalized musculoskeletal models. In this project, SIPP and SIPP-generic were developed to create personalized musculoskeletal models using smartphone images.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .title {
+            font-size: 2.1em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .authors {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .affiliation {
+            font-size: 0.8em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .link-button:hover {
+            background: #1d628f;
+        }
+
+        .link-button.code {
+            background: #23a057;
+        }
+
+        .link-button.code:hover {
+            background: #156034;
+        }
+
+        .link-button.dataset {
+            background: #d73a29;
+        }
+
+        .link-button.dataset:hover {
+            background: #6f1a10;
+        }
+        .link-button.mail {
+            background: #a19420;
+        }
+        .link-button.mail:hover {
+            background: #453e0a;
+        }
+        .link-button:visited {
+            color: white;
+        }
+
+        .link-button.code:visited {
+            color: white;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+        }
+
+        .abstract {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 30px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .figure {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .figure-caption {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .bibtex {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .result-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .metric {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .title {
+                font-size: 1.8em;
+            }
+            
+            .links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .link-button {
+                width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">From Smartphone Images to Musculoskeletal Models: Personalized Inertial Parameter Estimation</h1>
+
+            <div class="authors">
+                <strong>Markus Gambietz</strong><sup>1</sup>, 
+                <strong>Putri Qistina Azam</strong><sup>1</sup>, 
+                <strong>Philipp Amon</strong><sup>1</sup>, 
+                <strong>Iris Wechsler</strong><sup>2</sup>, 
+                <strong>Eva Maria Hille</strong><sup>3</sup>, 
+                <strong>Timo Menzel</strong><sup>4</sup>, 
+                <strong>Tabea Ott</strong><sup>5</sup>, 
+                <strong>Mario Botsch</strong><sup>4</sup>, 
+                <strong>Matthias Braun</strong><sup>3</sup>, 
+                <strong>Jörg Miehling</strong><sup>2</sup>, 
+                <strong>Katie L. McMahon</strong><sup>6</sup>, 
+                <strong>Anne D. Koelewijn</strong><sup>1</sup>
+            </div>
+
+            <span id="show-affiliations" style="cursor:pointer; color:#2b2d4c; font-size:1em;">Show affiliations ▼<br>&nbsp;</span>
+            <div id="affiliations" class="affiliation" style="display:none;">
+                <sup>1</sup>Chair of Autonomous Systems and Mechatronics, Friedrich-Alexander Universität Erlangen-Nürnberg, Erlangen, Germany<br>
+                <sup>2</sup>Chair of Engineering Design, Friedrich-Alexander University Erlangen-Nürnberg, Erlangen, Germany<br>
+                <sup>3</sup>Department of Social Ethics and Ethics of Emerging Technologies, University of Bonn, Bonn, Germany<br>
+                <sup>4</sup>Computer Graphics & Geometry Processing Group, TU Dortmund, Dortmund, Germany<br>
+                <sup>5</sup>Chair of Systematic Theology II (Ethics), Friedrich-Alexander Universität Erlangen-Nürnberg, Erlangen, Germany<br>
+                <sup>6</sup>School of Clinical Sciences, Faculty of Health, Queensland University of Technology, Brisbane, Australia<br>
+            </div>
+            <script>
+            document.getElementById('show-affiliations').addEventListener('click', function() {
+                document.getElementById('affiliations').style.display = 'block';
+                this.style.display = 'none';
+            });
+            </script>
+            
+            <div class="links">
+                <a href="https://www.biorxiv.org/content/10.1101/2025.07.08.663673v1" class="link-button">📄 Preprint (PDF)</a>
+                <a href="https://github.com/gambimar/sipp" class="link-button code">💻 Code</a>
+                <a href="https://zenodo.org/records/15791380" class="link-button dataset">📊 Dataset</a>
+                <a href="https://simtk.org/projects/sipp-generic" class="link-button dataset"> Generic Models</a>
+            </div>
+            <section>
+                &nbsp;
+            </section>
+
+            <div class="links">
+                <a href="https://terminplaner.dfn.de/MMFOhOkc6bhXn3Qe" class="link-button mail">Sign up for our web-app here!</a>
+                <a href="https://github.com/gambimar/sipp/blob/gh-pages/supporting.pdf" class ="link-button">📖 Supporting Document</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="figure">
+                <img src="visabstract.png" alt="SIPP Workflow">
+                <div class="figure-caption">
+                    <strong>Method Overview:</strong> Workflow for creating personalized musculoskeletal models using smartphone-based body hulls. A) shows the automated SIPP pipeline, which takes a body hull or smartphone pictures as input and outputs participant-specific BSIPs. B) displays the current optical motion capture data workflow that scales a generic model to the participant's body segment lengths, for which we use addBiomechanics. We then combine the BSIPs from SIPP with the scaled model to create a personalized MSK model. When using smartphone pictures, arms were removed from the body hull as they are affected by sway during recording.
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="results-grid">
+                <div class="result-item">
+                    <span class="metric">Personalized MSK Models</span>
+                </div>
+                <div class="result-item">
+                    <span class="metric">>13%</span>
+                    <div class="metric-label">Lower residuals</div>
+                </div>
+                <div class="result-item">
+                    <span class="metric"><5 min</span>
+                    <div class="metric-label">Additional recording time</div>
+                </div>
+            </div>
+        </section>
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>
+                Every human body is different, however, current movement analysis does not reflect that, as it heavily relies on generic musculoskeletal models. Usually, these models are scaled to match the participants' body segment lengths and body weight, but not taking individual body shape into account. This can lead to errors in the estimation of joint forces and torques, which are important to accurately estimate musculoskeletal variables.
+Thus, we developed a method to estimate body segment inertial parameters based on smartphone pictures. From the pictures, we reconstruct the body hull, estimate the skeletal shape and pose, and then estimate the distribution of bone, lean, and fatty tissues. We then segment the body hull and assign each tissue type a density, which is used to calculate the body segment inertial parameters.
+These personalized models were validated with an experiment including gait and magnetic resonance imaging measurements. We found that our method leads to a reduction of residual forces of up to 14.9% and a reduction of metabolic cost of up to 12.8% when compared to generic musculoskeletal models. Furthermore, the shape-based inertial parameter personalization method creates participant-specific musculoskeletal models that are closer to the MRI-derived ground truth than generic models.
+To allow for the use of our method with existing data, we also introduce two new generic musculoskeletal models, which are based on the average standing body shapes and show similar joint moment outcomes, but less reduction of residual forces as the personalized models.
+            </p>
+        </section>
+
+
+        <section class="section">
+            <h2>SIPP - Shape-based Inertial Parameter Personalization: <br> Web App</h2>
+            <p>
+                We are developing a web application to allow users to create personalized musculoskeletal models using body hull recordings - no coding required!
+                <br>
+                <a href="https://terminplaner.dfn.de/MMFOhOkc6bhXn3Qe" class="link-button mail">Sign up for our web-app here!</a>
+            </p>
+        </section>
+
+
+        <section class="section">
+            <h2>Citation</h2>
+            <p>If you find our work useful, please cite:</p>
+            <div class="bibtex">@article {Gambietz2025.07.08.663673,
+	author = {Gambietz, Markus and Azam, Putri Qistina and Amon, Philipp and Wechsler, Iris and Hille, Eva Maria and Menzel, Timo and Ott, Tabea and Botsch, Mario and Braun, Matthias and Miehling, J{\"o}rg and McMahon, Katie L. and Koelewijn, Anne D.},
+	title = {From Smartphone Images to Musculoskeletal Models: Personalized Inertial Parameter Estimation},
+	elocation-id = {2025.07.08.663673},
+	year = {2025},
+	doi = {10.1101/2025.07.08.663673},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2025/07/11/2025.07.08.663673},
+	eprint = {https://www.biorxiv.org/content/early/2025/07/11/2025.07.08.663673.full.pdf},
+	journal = {bioRxiv}
+}
+
+</div>
+        </section>
+
+        <section class="section">
+            <h2>Contact</h2>
+            <p>
+                For questions or collaborations, please reach out to: 
+                <button id="show-email" class="link-button " type="button">Show Email</button>
+                <span id="email-address" style="display:none; margin-left:10px;">
+                </span>
+            </p>
+<script>
+document.getElementById('show-email').addEventListener('click', function() {
+    // Original email: markus.gambietz@fau.de
+    // Character codes: [109,97,114,107,117,115,46,103,97,109,98,105,101,116,122,64,102,97,117,46,100,101]
+    const shuffled = [
+      101, 115, 114, 64, 109, 101, 102, 46, 46, 
+      116, 117, 122,  98,  97, 105, 117,  97, 103, 
+       97, 109, 107, 100
+    ];
+    // Mapping from shuffled index → decoded position
+    const key = [
+      21,  5,  2, 15,  9, 12, 16, 19,  6, 
+      13, 18, 14, 10,  1, 11,  4, 17,  7, 
+       8,  0,  3, 20
+    ];
+    
+    let decoded = new Array(shuffled.length);
+    for(let i = 0; i < shuffled.length; i++) {
+        decoded[key[i]] = String.fromCharCode(shuffled[i]);
+    }
+    
+    const email = decoded.join('');
+    document.getElementById('email-address').innerHTML = 
+        `<a href="mailto:${email}">${email}</a>`;
+    document.getElementById('email-address').style.display = 'inline';
+    this.style.display = 'none';
+});
+</script>
+        </section>
+        <a href="impressum.html">Impressum</a>
+
+    </div>
+</body>
+</html>
+
